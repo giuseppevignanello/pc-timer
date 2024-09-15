@@ -1,9 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import psutil
-from timer import timer
-
-selected_pids = set()
+from timer import start_timer
 
 def get_all_processes():
     processes = []
@@ -14,21 +12,15 @@ def get_all_processes():
             pass
     return processes
 
-def terminate_selected():
-    global selected_pids
-    selected_pids.clear()
-    for index in process_list.curselection():
-        pid = process_list.get(index).split(':')[0]
-        selected_pids.add(int(pid))
-
+def terminate_all_processes():
     selected_time = timer_var.get()
 
     if selected_time == "Testing":
-        seconds = 10  
+        seconds = 3  
     else:
         seconds = int(selected_time) * 60  
 
-    timer(seconds, selected_pids)
+    start_timer(seconds)
 
 
 root = tk.Tk()
@@ -51,7 +43,7 @@ process_list = tk.Listbox(root, height=15, width=50)
 process_list.pack(pady=10)
 
 
-terminate_button = ttk.Button(root, text="Terminate processes and shutdown", command=terminate_selected)
+terminate_button = ttk.Button(root, text="Terminate all processes and shutdown", command=terminate_all_processes)
 terminate_button.pack(pady=10)
 
 
