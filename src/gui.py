@@ -43,11 +43,11 @@ process_list = tk.Listbox(root, height=15, width=50)
 process_list.pack(pady=10)
 
 
-terminate_button = ttk.Button(root, text="Terminate all processes and shutdown", command=terminate_all_processes)
+terminate_button = tk.Button(root, text="Terminate all processes and shutdown", command=terminate_all_processes)
 terminate_button.pack(pady=10)
 
 
-timer_label = ttk.Label(root, text="")
+timer_label = tk.Label(root, text="")
 timer_label.pack(pady=10)
 
 
